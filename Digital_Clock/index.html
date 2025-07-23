@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Digital Clock</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="clock-container">
+        <div class="time-display">
+            <div class="time-segment">
+                <div class="time-number" id="hours">00</div>
+                <div class="time-label">Hours</div>
+            </div>
+            <div class="separator">:</div>
+            <div class="time-segment">
+                <div class="time-number" id="minutes">00</div>
+                <div class="time-label">Minutes</div>
+            </div>
+            <div class="separator">:</div>
+            <div class="time-segment">
+                <div class="time-number" id="seconds">00</div>
+                <div class="time-label">Seconds</div>
+            </div>
+        </div>
+
+        <div class="date-info">
+            <div class="date" id="date">July 23rd, 2025/div>
+            <div class="day" id="day">Wednesday</div>
+        </div>
+        <div>
+            <button class="control-btn active" id="format12" onclick="toggleFormat(false)">12H</button>
+            <button class="control-btn" id="format24" onclick="toggleFormat(true)">24H</button>
+        </div>
+        <div class="timezone-info">
+            <div>Pakistan Standard Time (PKT)</div>
+            <div>UTC +5:00</div>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+   
+
+    
+</body>
+</html>
