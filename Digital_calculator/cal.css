@@ -1,0 +1,98 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  transition: background 0.3s ease;
+}
+
+.calculator {
+  width: 400px;
+  margin: 60px auto;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  transition: background 0.3s ease;
+  background-color: #ffffff;
+}
+
+.display {
+  background-color: #eee;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: right;
+  font-size: 2rem;
+  margin-bottom: 15px;
+  min-height: 60px;
+  color: #000;
+  transition: color 0.3s ease;
+}
+
+#secondary-display {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 10px;
+
+}
+
+button {
+  padding: 15px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: orange; 
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: grey;
+}
+
+body.light {
+  background-color: #f0f0f0;
+}
+body.light .calculator {
+  background-color: #ffffff;
+}
+body.light .display {
+  background-color: #eeeeee;
+  color: #000;
+}
+
+
+body.dark {
+  background-color: #121212;
+}
+body.dark .calculator {
+  background-color: #1e1e1e;
+}
+body.dark .display {
+  background-color: #444;
+  color: rgb(255, 0, 4);
+}
+
+
+body.pro {
+  background-color: #4b0082;
+}
+body.pro .calculator {
+  background-color: #5c2b93;
+}
+body.pro .display {
+  background-color: #6933aa;
+  color: #fff;
+}
+
+
+.mode {
+  background-color: #ccc;
+  color: #000;
+  font-weight: bold;
+}
