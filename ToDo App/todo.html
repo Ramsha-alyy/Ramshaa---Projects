@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Todo App</title>
+    <link rel="stylesheet" href="todo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+      
+        <header class="header">
+            <div class="header-content">
+                <h1 class="app-title">
+                    <span class="title-icon">✨</span>
+                    Todo App
+                </h1>
+                <button class="add-task-btn" onclick="openTaskModal()">
+                    <span class="plus-icon">+</span>
+                    Add Task
+                </button>
+            </div>
+        </header>
+
+      
+        <main class="main-content">
+      
+            <div class="filter-tabs">
+                <button class="tab-btn active" data-filter="all" onclick="filterTasks('all', this)">
+                    All Tasks
+                    <span class="task-count" id="allCount">0</span>
+                </button>
+                <button class="tab-btn" data-filter="pending" onclick="filterTasks('pending', this)">
+                    Pending
+                    <span class="task-count" id="pendingCount">0</span>
+                </button>
+                <button class="tab-btn" data-filter="completed" onclick="filterTasks('completed', this)">
+                    Completed
+                    <span class="task-count" id="completedCount">0</span>
+                </button>
+            </div>
+
+            <div class="search-container">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search tasks..." id="searchInput" oninput="searchTasks()">
+                </div>
+            </div>
+
+          
+            <div class="tasks-section">
+                <div class="tasks-container" id="tasksContainer">
+                   
+                </div>
+
+           
+                <div class="empty-state" id="emptyState">
+                    <div class="empty-icon">📝</div>
+                    <h3>No tasks yet</h3>
+                    <p>Create your first task to get started!</p>
+                    <button class="empty-add-btn" onclick="openTaskModal()">
+                        + Add Your First Task
+                    </button>
+                </div>
+            </div>
+        </main>
+
+     
+        <div class="modal-overlay" id="taskModal" onclick="closeTaskModal(event)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle">Add New Task</h2>
+                    <button class="close-btn" onclick="closeTaskModal()">×</button>
+                </div>
+
+                <form class="task-form" id="taskForm" onsubmit="saveTask(event)">
+                    <div class="form-group">
+                        <label for="taskTitle">Task Title *</label>
+                        <input type="text" id="taskTitle" placeholder="Enter task title..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taskDescription">Description</label>
+                        <textarea id="taskDescription" placeholder="Add task description..." rows="4"></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="taskCategory">Category</label>
+                            <select id="taskCategory">
+                                <option value="personal">📋 Personal</option>
+                                <option value="work">💼 Work</option>
+                                <option value="shopping">🛒 Shopping</option>
+                                <option value="health">🏥 Health</option>
+                                <option value="study">📚 Study</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="taskPriority">Priority</label>
+                            <select id="taskPriority">
+                                <option value="low">🟢 Low</option>
+                                <option value="medium">🟡 Medium</option>
+                                <option value="high">🔴 High</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taskDueDate">Due Date</label>
+                        <input type="date" id="taskDueDate">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" onclick="closeTaskModal()">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn-save" id="saveBtn">
+                            Save Task
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+     
+        <div class="modal-overlay" id="taskDetailModal" onclick="closeDetailModal(event)">
+            <div class="modal-content detail-modal">
+                <div class="modal-header">
+                    <h2 id="detailTitle">Task Details</h2>
+                    <div class="detail-actions">
+                        <button class="edit-btn" onclick="editTaskFromDetail()" id="editDetailBtn">
+                            ✏️ Edit
+                        </button>
+                        <button class="close-btn" onclick="closeDetailModal()">×</button>
+                    </div>
+                </div>
+
+                <div class="task-detail-content">
+                    <div class="detail-section">
+                        <h4>Description</h4>
+                        <p id="detailDescription">No description provided</p>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-item">
+                            <span class="detail-label">Category:</span>
+                            <span class="detail-value" id="detailCategory">Personal</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Priority:</span>
+                            <span class="detail-value" id="detailPriority">Medium</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <span class="detail-label">Due Date:</span>
+                        <span class="detail-value" id="detailDueDate">Not set</span>
+                    </div>
+
+                    <div class="detail-item">
+                        <span class="detail-label">Created:</span>
+                        <span class="detail-value" id="detailCreated">Today</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="todo.js"></script>
+</body>
+</html>
