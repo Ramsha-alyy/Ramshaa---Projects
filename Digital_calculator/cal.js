@@ -44,14 +44,28 @@ document.querySelectorAll(".buttons button:not(.sci):not(.mode)").forEach(btn =>
   btn.addEventListener("click", () => {
     const val = btn.textContent;
 
-    if (val === "=") {
-      try {
-        secDisplay.textContent = display.textContent;
-        display.textContent = eval(display.textContent);
-      } catch {
-        display.textContent = "Error";
+  if (val === "=") {
+    try {
+      secDisplay.textContent = display.textContent;
+      const result = eval(display.textContent);
+
+      if (
+        result === Infinity || result === -Infinity || 
+        isNaN(result) || !isFinite(result)
+      ) {
+        showError("Error");
+      } else {
+        display.textContent = result;
       }
-    } else if (val === "AC") {
+
+    }catch {
+    showError("Error");
+    }
+  }
+
+    
+
+    else if (val === "AC") {
       display.textContent = "0";
       secDisplay.textContent = "";
     } else if (val === "DEL") {
@@ -65,5 +79,13 @@ document.querySelectorAll(".buttons button:not(.sci):not(.mode)").forEach(btn =>
     }
   });
 });
+function showError(message) {
+  display.textContent = message;
+  display.classList.add("error-animate");
+
+  setTimeout(() => {
+    display.classList.remove("error-animate");
+  }, 1000);
+}
 
 

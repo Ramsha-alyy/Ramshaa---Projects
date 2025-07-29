@@ -5,18 +5,36 @@ body {
   transition: background 0.3s ease;
 }
 
+
 .calculator {
   width: 400px;
   margin: 60px auto;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0,0,0,0.2);
-  transition: background 0.3s ease;
   background-color: #ffffff;
+  transition: background 0.3s ease;
+  animation: fadeIn 0.6s ease;
 }
 
+.animated-container {
+  animation: bounceIn 0.6s ease-out;
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
 .display {
-  background-color: #eee;
+  background: linear-gradient(135deg, #e0e0e0, #ffffff);
   padding: 15px;
   border-radius: 10px;
   text-align: right;
@@ -24,7 +42,23 @@ body {
   margin-bottom: 15px;
   min-height: 60px;
   color: #000;
-  transition: color 0.3s ease;
+  transition: background 0.5s ease, color 0.3s ease;
+  animation: fadeDisplay 1s ease;
+}
+@keyframes fadeDisplay {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+.display #main-display,
+.display #secondary-display {
+  animation: slideText 0.3s ease;
+}
+
+@keyframes slideText {
+  from { opacity: 0; transform: translateX(10px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 #secondary-display {
@@ -37,23 +71,90 @@ body {
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
   margin-bottom: 10px;
-
 }
 
+/* Button Styling */
 button {
   padding: 15px;
   font-size: 1.1rem;
   border: none;
   border-radius: 8px;
-  background-color: orange; 
-  color: white;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.3s ease;
 }
 
 button:hover {
-  background-color: grey;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
+
+button:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+/* Numbers */
+button.number {
+  background-color: #bbb;
+  color: black;
+}
+button.number:hover {
+  background-color: #999;
+}
+
+/* Operators */
+button.operator {
+  background-color: orange;
+  color: white;
+}
+button.operator:hover {
+  background-color: darkorange;
+}
+
+/* Scientific functions */
+button.sci {
+  background-color: crimson;
+  color: white;
+}
+button.sci:hover {
+  background-color: darkred;
+}
+
+/* Equal button with pulse */
+button.equal {
+  background-color: green;
+  color: white;
+  animation: pulse 1.5s infinite;
+}
+button.equal:hover {
+  background-color: darkgreen;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(0, 128, 0, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(0, 128, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 128, 0, 0); }
+}
+
+
+#clear,
+#del {
+  background-color: #888;
+  color: white;
+}
+#clear:hover,
+#del:hover {
+  background-color: #666;
+}
+
+button.mode {
+  background-color: #ccc;
+  color: #000;
+  font-weight: bold;
+}
+button.mode:hover {
+  background-color: #aaa;
+}
+
 
 body.light {
   background-color: #f0f0f0;
@@ -66,7 +167,6 @@ body.light .display {
   color: #000;
 }
 
-
 body.dark {
   background-color: #121212;
 }
@@ -74,10 +174,9 @@ body.dark .calculator {
   background-color: #1e1e1e;
 }
 body.dark .display {
-  background-color: #444;
+  background: linear-gradient(135deg, #2d2d2d, #444);
   color: rgb(255, 0, 4);
 }
-
 
 body.pro {
   background-color: #4b0082;
@@ -86,13 +185,28 @@ body.pro .calculator {
   background-color: #5c2b93;
 }
 body.pro .display {
-  background-color: #6933aa;
+  background: linear-gradient(135deg, #6b4ebf, #4b0082);
   color: #fff;
 }
 
 
-.mode {
-  background-color: #ccc;
-  color: #000;
-  font-weight: bold;
+#main-display.error-animate {
+  animation: shake 0.4s ease-in-out, flash 0.8s ease-in-out;
+  color: red !important;
+  text-shadow: 0 0 5px red, 0 0 10px red;
+}
+
+@keyframes shake {
+  0%   { transform: translateX(0); }
+  20%  { transform: translateX(-6px); }
+  40%  { transform: translateX(6px); }
+  60%  { transform: translateX(-6px); }
+  80%  { transform: translateX(6px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes flash {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
 }
